@@ -30,15 +30,15 @@ namespace Business.Concrete
             return _colorDal.GetAll();
         }
 
+        public Color GetById(int colorId)
+        {
+            return _colorDal.Get(c => c.ColorId == colorId);
+
+        }
+
         public void Update(Color color) 
         {
             _colorDal.Update(color);
-        }
-
-        List<Color> IColorService.GetById(int colorId)
-        {
-            return _colorDal.GetAll(c => c.ColorId == colorId);
-
         }
     }
 }
