@@ -1,6 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
-using Core.Utilities.Result;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using DataAccess.Concrete.InMemory;
 using Entities.Concrete;
@@ -34,7 +34,7 @@ namespace Business.Concrete
         }
         public IResult Delete(Car car)
         {
-            if (car.CarId < 0)
+            if (car.CarId < 1)
             {
                 return new ErrorResult(Messages.CarNameInvalid);
             }
@@ -72,7 +72,7 @@ namespace Business.Concrete
         }
         public IResult Update(Car car)
         {
-            if (car.CarId < 0)
+            if (car.CarId < 1)
             {
                 return new ErrorResult(Messages.CarNameInvalid);
             }

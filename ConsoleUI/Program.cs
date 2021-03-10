@@ -10,7 +10,19 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
+
             //CarDetailsTest();
+            //CarTest(result);
+            RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            foreach (var rental in rentalManager.GetRentalDetails().Data)
+            {
+                Console.WriteLine(rental.CompanyName+" "+rental.BrandName+" "+rental.CarName+" "+rental.DailyPrice);
+            }
+
+        }
+
+        private static void CarTest()
+        {
             CarManager carManager = new CarManager(new EfCarDal());
             var result = carManager.GetCarDetails();
             if (result.Success)
@@ -24,17 +36,17 @@ namespace ConsoleUI
             {
                 Console.WriteLine(result.Message);
             }
-
-
         }
 
         private static void CarDetailsTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails().Data) 
+            foreach (var car in carManager.GetCarDetails().Data)
             {
                 Console.WriteLine(car.CarName + " " + car.BrandName + " " + car.ColorName);
             }
         }
     }
+    
 }
+
