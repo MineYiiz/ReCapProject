@@ -10,15 +10,41 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-
             //CarDetailsTest();
             //CarTest(result);
+            //CustomerAddTest();
+            //CustomerDeletTest();
+            //CustomerUpdateTest();
+            //RentalDetailsTest();
+        }
+
+        private static void RentalDetailsTest()
+        {
             RentalManager rentalManager = new RentalManager(new EfRentalDal());
             foreach (var rental in rentalManager.GetRentalDetails().Data)
             {
-                Console.WriteLine(rental.CompanyName+" "+rental.BrandName+" "+rental.CarName+" "+rental.DailyPrice);
+                Console.WriteLine(rental.CompanyName + " " + rental.BrandName + " " + rental.CarName + " " + rental.DailyPrice);
             }
+        }
+        private static void CustomerUpdateTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Update(new Customer { CustomerId = 7, UserId = 4, CompanyName = "Media Mark" });
+            Console.WriteLine(result.Message);
+        }
 
+        private static void CustomerDeletTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Delete(new Customer { CustomerId = 7 });
+            Console.WriteLine(result.Message);
+        }
+
+        private static void CustomerAddTest()
+        {
+            CustomerManager customerManager = new CustomerManager(new EfCustomerDal());
+            var result = customerManager.Add(new Customer { CustomerId = 7, UserId = 2, CompanyName = "Turkcell" });
+            Console.WriteLine(result.Message);
         }
 
         private static void CarTest()
